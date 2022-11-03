@@ -38,12 +38,18 @@ class ll {
             insertFront(data);
             return;
         }
-
         Node newNode = new Node(data);
         Node temp = head;
-        for (int i = 0; i < pos - 1; i++) {
+        int count = 0;
+
+        while (temp.next != null) {
+            if (count == pos - 1) {
+                break;
+            }
             temp = temp.next;
+            count++;
         }
+
         newNode.next = temp.next;
         temp.next = newNode;
     }
@@ -55,7 +61,7 @@ class ll {
     void removeEnd() {
         Node temp = head;
 
-        while (temp.next.next != null) {
+        while (temp.next != null) {
             temp.next = null;
         }
     }
@@ -66,10 +72,15 @@ class ll {
             return;
         }
         Node temp = head;
-
-        for (int i = 0; i < pos - 1; i++) {
+        int count = 0;
+        while (temp.next != null) {
+            if (count == pos - 1) {
+                break;
+            }
             temp = temp.next;
+            count++;
         }
+
         temp.next = temp.next.next;
     }
 
@@ -100,7 +111,13 @@ public class linked_list {
         l.insertFront(12);
         l.insertEnd(2);
         l.insertFront(1);
-        l.insertPos(3, 3);
+        l.insertPos(3, 2);
+        l.display();
+        l.removePos(2);
+        l.display();
+        l.removeFront();
+        l.display();
+        l.removeEnd();
         l.display();
     }
 }
